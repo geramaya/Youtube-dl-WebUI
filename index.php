@@ -58,7 +58,7 @@
 					<div class="col-md-2">
 						<div class="checkbox">
 							<label>
-								<input type="checkbox" name="audio"> Audio Only
+								<input type="checkbox" name="audio" checked="true"> Audio Only
 							</label>
 						</div>
 					</div>

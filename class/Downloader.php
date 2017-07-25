@@ -184,7 +184,8 @@ class Downloader
 
 	private function do_download()
 	{
-		$cmd = "youtube-dl";
+		// use --no-mtime to get the current date, not the upload of the file.
+		$cmd = "youtube-dl --no-mtime"; 
 		$cmd .= " -o ".$this->download_path."/";
 		$cmd .= escapeshellarg("%(title)s-%(uploader)s.%(ext)s");
 

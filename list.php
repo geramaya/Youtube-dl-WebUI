@@ -43,9 +43,10 @@
 			<table class="table table-striped table-hover ">
 				<thead>
 					<tr>
-						<th style="min-width:800px; height:35px">Title</th>
-						<th style="min-width:80px">Size</th>
-						<th style="min-width:110px">Delete link</th>
+						<th style="min-width:850px; height:35px">Title</th>
+						<th style="min-width:120px">Size</th>
+						<th style="min-width:150px">Download on</th>
+						<th style="min-width:80px">Delete link</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -58,6 +59,7 @@
 					echo "<tr>";
 					echo "<td><a href=\"".$file->get_downloads_folder().'/'.$f["name"]."\" download>".$f["name"]."</a></td>";
 					echo "<td>".$f["size"]."</td>";
+					echo "<td>".date ("Y-m-d H:i:s", $f["download"])."</td>";
 					echo "<td><a href=\"./list.php?delete=$i&type=$t\" class=\"btn btn-danger btn-sm\">Delete</a></td>";
 					echo "</tr>";
 					$i++;

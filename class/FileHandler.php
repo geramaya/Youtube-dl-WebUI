@@ -4,7 +4,7 @@ class FileHandler
 {
 	private $config = [];
 	private $videos_ext = ".{avi,mp4,flv,webm}";
-	private $musics_ext = ".{mp3,ogg,m4a}";
+	private $musics_ext = ".{mp3,ogg,m4a,opus}";
 
 	public function __construct()
 	{
@@ -40,13 +40,16 @@ class FileHandler
 			return;
 
 		$folder = $this->get_downloads_folder().'/';
+		$local_files = glob($folder.'*'.$this->musics_ext, GLOB_BRACE);
+		usort($local_files, create_function('$a,$b', 'return filemtime($b) - filemtime($a);'));
 
-		foreach(glob($folder.'*'.$this->musics_ext, GLOB_BRACE) as $file)
+		foreach($local_files as $file)
 		{
 			$music = [];
 			$music["name"] = str_replace($folder, "", $file);
 			$music["size"] = $this->to_human_filesize(filesize($file));
-			
+			$music["created"] = filectime($file);
+            $music["download"] = filemtime($file);
 			$musics[] = $music;
 		}
 
